@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-form>
+    <!-- <v-form>
       <v-text-field
       label="Activity"
       type="text"
@@ -10,8 +10,17 @@
       @click:append="addActivity"
       @keyup.enter="addActivity"
       />
-    </v-form>
-    <v-card
+    </v-form> -->
+    <v-container>
+     
+    </v-container>
+    <InputBar
+    :insertedAuthor="insertedAuthor"
+    :insertedActivity="insertedActivity"
+    @update-activity="updateActivity"
+    @add="addActivity"
+    />
+    <!-- <v-card
       elevation="2"
       outlined
       class="rounded-xl"
@@ -36,83 +45,62 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-card>
+    </v-card> -->
+    <ActivitiesList
+      v-bind:items="activities"
+      @modify="modifyActivity"
+      @toggle="toggleDone"
+    />
   </v-container>
 </template>
 
 <script>
+import activitiesData from "../data/activities.json"
+import InputBar from "../components/InputBarComponent.vue";
+import ActivitiesList from "../components/ActivitiesListComponent.vue";
+
+
   export default {
     name: "ToDoListView",
     data(){
       return{
-        icons:{
-          trash: "mdi-trash-can",
-          modify: "mdi-lead-pencil",
-          activity: "mdi-wrench",
-          addActivity: "mdi-pencil-plus"
-        },
+        // i load the default activities from json file
+        activities: activitiesData,
+        // icons:{
+        //   trash: "mdi-trash-can",
+        //   modify: "mdi-lead-pencil",
+          // activity: "mdi-wrench",
+          // addActivity: "mdi-pencil-plus"
+        // },
         insertedAuthor: "",
         insertedActivity: "",
         isModifying:{
           bool: false,
           key: ""
         },
-        activities:
-        [
-          {
-            activity: "Buy groceries",
-            author: "Alice",
-            done: false
-          },
-          {
-            activity: "Complete Vue.js project",
-            author: "Bob",
-            done: false
-          },
-          {
-            activity: "Read a new book",
-            author: "Charlie",
-            done: false
-          },
-          {
-            activity: "Walk the dog",
-            author: "Diana",
-            done: false
-          },
-          {
-            activity: "Prepare presentation slides",
-            author: "Edward" ,
-            done: false
-          },
-          {
-            activity: "Plan weekend trip",
-            author: "Fiona",
-            done: false
-          },
-          {
-            activity: "Clean the garage",
-            author: "George",
-            done: false
-          },
-          {
-            activity: "Write a blog post",
-            author: "Hannah",
-            done: false
-          },
-          {
-            activity: "Pay electricity bill",
-            author: "Ivan",
-            done: false
-          },
-          {
-            activity: "Organize desk",
-            author: "Julia",
-            done: false
-          }
-        ],
       }
     },
+    components:{
+      InputBar,
+      ActivitiesList,
+    },
+    watch:{
+      // insertedActivity(){
+      //   console.log(this.insertedActivity)
+      // }
+    },
     methods:{
+      toggleDone(i){
+        !this.activities[i].done; 
+        console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done)
+      },
+      updateActivity(newValue){
+        this.insertedActivity = newValue
+        console.log("Aggiornamento valore: ", newValue)
+      },
+      showActivities(){
+        console.log(this.activities)
+      },
       addActivity(){
         let obj = {
           activity: this.insertedActivity,
@@ -140,6 +128,9 @@
           this.isModifying.key = i;
         }
       }
+    },
+    mounted(){
+      this.showActivities()
     }
   }
 

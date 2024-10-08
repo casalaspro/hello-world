@@ -1,0 +1,52 @@
+[
+  {
+    "activity": "Buy groceries",
+    "author": "Alice",
+    "done": true
+  },
+  {
+    "activity": "Complete Vue.js project",
+    "author": "Bob",
+    "done": false
+  },
+  {
+    "activity": "Read a new book",
+    "author": "Charlie",
+    "done": false
+  },
+  {
+    "activity": "Walk the dog",
+    "author": "Diana",
+    "done": false
+  },
+  {
+    "activity": "Prepare presentation slides",
+    "author": "Edward" ,
+    "done": false
+  },
+  {
+    "activity": "Plan weekend trip",
+    "author": "Fiona",
+    "done": false
+  },
+  {
+    "activity": "Clean the garage",
+    "author": "George",
+    "done": true
+  },
+  {
+    "activity": "Write a blog post",
+    "author": "Hannah",
+    "done": false
+  },
+  {
+    "activity": "Pay electricity bill",
+    "author": "Ivan",
+    "done": true
+  },
+  {
+    "activity": "Organize desk",
+    "author": "Julia",
+    "done": true
+  }
+]
