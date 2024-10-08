@@ -11,12 +11,22 @@
           v-for="(item, i) in items"
           :key="i"
           @click="modifyActivity(item, i)"
+          @mouseenter="hoveredItemIndex = i"
+          @mouseleave="hoveredItemIndex = null"
         >
-          <v-checkbox
-          v-model="item.done"
-          :key="i"
-          @click="toggleDone(i)"
-          ></v-checkbox>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <span><v-checkbox
+                v-model="item.done"
+                :key="i"
+                @click="toggleDone(i)"
+                v-bind="attrs"
+                v-on="on"
+              ></v-checkbox></span>
+            </template>
+            <span>Check that you did it!</span>
+          </v-tooltip>
+          
           <v-list-item-content>
             <v-list-item-title
               :class="item.done ? 'linethrough':''"
@@ -24,9 +34,23 @@
               append-icon="mdi-trash-can"
             ></v-list-item-title>
           </v-list-item-content>
-          <v-list-item-icon>
-            <v-icon v-text="icons.modify" class="mr-2"></v-icon>
-            <v-icon v-text="icons.trash"></v-icon>
+          <v-list-item-icon
+            v-if="hoveredItemIndex === i"
+          >
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon v-text="icons.modify" class="mr-2" v-bind="attrs" v-on="on"></v-icon>
+              </template>
+              <span>Modify</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon v-text="icons.trash" class="mr-2" v-bind="attrs" v-on="on"></v-icon>
+              </template>
+              <span>Delete</span>
+            </v-tooltip>
+            
           </v-list-item-icon>
         </v-list-item>
       </v-list-item-group>
@@ -45,6 +69,7 @@ export default{
         trash: "mdi-trash-can",
         modify: "mdi-lead-pencil",
       },
+      hoveredItemIndex: null,
       // activitiesList: activities,
     }
   },

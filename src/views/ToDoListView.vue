@@ -11,41 +11,26 @@
       @keyup.enter="addActivity"
       />
     </v-form> -->
-    <v-container>
-     
-    </v-container>
     <InputBar
     :insertedAuthor="insertedAuthor"
     :insertedActivity="insertedActivity"
     @update-activity="updateActivity"
     @add="addActivity"
     />
-    <!-- <v-card
-      elevation="2"
-      outlined
-      class="rounded-xl"
-    >
-      <v-list>
-        <v-list-item-group>
-          <v-list-item
-            v-for="(activity, i) in activities"
-            :key="i"
-            @click="modifyActivity(activity, i)"
-          >
-            <v-list-item-icon>
-              <v-icon v-text="icons.modify" class="mr-2"></v-icon>
-              <v-icon v-text="icons.trash"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="activity.activity"
-                append-icon="mdi-trash-can"
-              ></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card> -->
+
+    <v-container>
+      <v-alert
+        v-for="(alert, i) in alerts"
+        :key="i"
+        border="top"
+        color="primary lighten-2"
+        dark
+        :value="alert.isOn"
+      >
+        {{ alert.message }}
+      </v-alert>
+    </v-container>
+
     <ActivitiesList
       v-bind:items="activities"
       @modify="modifyActivity"
@@ -66,18 +51,18 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       return{
         // i load the default activities from json file
         activities: activitiesData,
-        // icons:{
-        //   trash: "mdi-trash-can",
-        //   modify: "mdi-lead-pencil",
-          // activity: "mdi-wrench",
-          // addActivity: "mdi-pencil-plus"
-        // },
         insertedAuthor: "",
         insertedActivity: "",
         isModifying:{
           bool: false,
           key: ""
         },
+        alerts:[
+          {
+            isOn: true,
+            message: "You are now modifying the activity."
+          }
+        ]
       }
     },
     components:{
@@ -85,9 +70,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       ActivitiesList,
     },
     watch:{
-      // insertedActivity(){
-      //   console.log(this.insertedActivity)
-      // }
+      
     },
     methods:{
       toggleDone(i){
