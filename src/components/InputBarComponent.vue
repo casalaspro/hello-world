@@ -53,6 +53,7 @@ export default{
     addActivity(){
       // i emit to the parent component
       this.$emit('add');
+      this.localInsertedActivity = "";
     }
   },
   created(){
