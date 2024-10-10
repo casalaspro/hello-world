@@ -12,6 +12,7 @@
       />
     </v-form> -->
     <InputBar
+    :key="howManyReload"
     :insertedAuthor="insertedAuthor"
     :insertedActivity="insertedActivity"
     @update-activity="updateActivity"
@@ -32,6 +33,7 @@
     </v-container>
 
     <ActivitiesList
+      :key="reloadList"
       v-bind:items="activities"
       @modify="modifyActivity"
       @toggle="toggleDone"
@@ -53,6 +55,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         activities: activitiesData,
         insertedAuthor: "",
         insertedActivity: "",
+        reloadList: 0,
+        howManyReload: 0,
         isModifying:{
           bool: false,
           key: ""
@@ -70,12 +74,14 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       ActivitiesList,
     },
     watch:{
-      
+
     },
     methods:{
       toggleDone(i){
         !this.activities[i].done; 
-        console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done)
+        console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done);
+        this.reloadList++
+        // this.howManyReload++;
       },
       updateActivity(newValue){
         this.insertedActivity = newValue
@@ -84,9 +90,9 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       showActivities(){
         console.log(this.activities)
       },
-      addActivity(){
+      addActivity(value){
         let obj = {
-          activity: this.insertedActivity,
+          activity: value,
           author: this.insertedAuthor,
           done: false
         };
@@ -94,14 +100,16 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         if(this.isModifying.bool){
           this.activities[this.isModifying.key] = obj;
           this.isModifying.bool=false
+          this.isModifying.key = "";
         }else{
           this.activities.unshift(obj);
         }
 
         this.insertedActivity = "";
-        this.insertedAuthor = "";
-        this.isModifying.bool = false;
-        this.isModifying.key = "";
+        // this.insertedAuthor = "";
+        // this.isModifying.bool = false;
+
+        this.howManyReload++;
       },
       modifyActivity(obj, i){
         if(obj !== null && i !== ""){
@@ -110,6 +118,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
           this.isModifying.bool = true;
           this.isModifying.key = i;
         }
+
+        this.howManyReload++;
       }
     },
     mounted(){

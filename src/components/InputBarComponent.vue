@@ -52,14 +52,14 @@ export default{
     // method to add a new activity
     addActivity(){
       // i emit to the parent component
-      this.$emit('add');
+      this.$emit('add', this.localInsertedActivity);
       this.localInsertedActivity = "";
     }
   },
   created(){
     // i check to have datas from the prop before to copy inside the local variable
-    if(this.insertedActivity !== null)
-    this.localInsertedActivity = this.insertedActivity
+    // if(this.insertedActivity !== null)
+    // this.localInsertedActivity = this.insertedActivity
   }
 
 }
