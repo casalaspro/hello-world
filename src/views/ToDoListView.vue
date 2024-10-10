@@ -12,7 +12,7 @@
       />
     </v-form> -->
     <InputBar
-    :key="howManyReload"
+    :key="reloadInputBar"
     :insertedAuthor="insertedAuthor"
     :insertedActivity="insertedActivity"
     @update-activity="updateActivity"
@@ -55,8 +55,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         activities: activitiesData,
         insertedAuthor: "",
         insertedActivity: "",
-        reloadList: 0,
-        howManyReload: 0,
+        reloadList: 0+100,
+        reloadInputBar: 0,
         isModifying:{
           bool: false,
           key: ""
@@ -80,8 +80,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       toggleDone(i){
         !this.activities[i].done; 
         console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done);
-        this.reloadList++
-        // this.howManyReload++;
+        this.reloadList = this.reloadInputBar + 100
+        // this.reloadInputBar++;
       },
       updateActivity(newValue){
         this.insertedActivity = newValue
@@ -109,7 +109,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         // this.insertedAuthor = "";
         // this.isModifying.bool = false;
 
-        this.howManyReload++;
+        this.reloadInputBar++;
       },
       modifyActivity(obj, i){
         if(obj !== null && i !== ""){
@@ -119,7 +119,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
           this.isModifying.key = i;
         }
 
-        this.howManyReload++;
+        this.reloadInputBar++;
       }
     },
     mounted(){
