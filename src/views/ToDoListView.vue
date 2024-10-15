@@ -22,6 +22,7 @@
     <v-container>
       <v-alert
         v-for="(alert, i) in alerts"
+        v-show="isModifying.bool"
         :key="i"
         border="top"
         color="primary lighten-2"
