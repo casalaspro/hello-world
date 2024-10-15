@@ -50,7 +50,13 @@
 
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
-                <v-icon v-text="icons.trash" class="mr-2" v-bind="attrs" v-on="on"></v-icon>
+                <v-icon
+                v-text="icons.trash"
+                class="mr-2"
+                v-bind="attrs"
+                v-on="on"
+                @click="deleteActivity(i)"
+                ></v-icon>
               </template>
               <span>Delete</span>
             </v-tooltip>
@@ -103,6 +109,9 @@ export default{
     modifyActivity(item, index){
       this.$emit('modify', item, index);
       console.log("I'm modifying from the list")
+    },
+    deleteActivity(index){
+      this.$emit('delete', index);
     }
   },
   created(){

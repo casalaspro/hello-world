@@ -37,6 +37,7 @@
       v-bind:items="activities"
       @modify="modifyActivity"
       @toggle="toggleDone"
+      @delete="deleteActivity"
     />
   </v-container>
 </template>
@@ -145,6 +146,12 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         }
 
         this.reloadInputBar++;
+      },
+      deleteActivity(index){
+        if(index !== ""){
+          this.activities.splice(index, 1);
+          this.updateLocalStorageActivities()
+        }
       }
     },
     mounted(){
