@@ -59,7 +59,7 @@ export default{
   created(){
     // i check to have datas from the prop before to copy inside the local variable
     // if(this.insertedActivity !== null)
-    // this.localInsertedActivity = this.insertedActivity
+    this.localInsertedActivity = this.insertedActivity
   }
 
 }

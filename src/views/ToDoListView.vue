@@ -93,12 +93,6 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.activities = lastActivitiesListObject;
         console.log("TO-DO-LIST starting activities: ", this.activities);
       }else{
-        // // i convert json in string
-        // const defaultActivitiesString = JSON.stringify(this.activities);
-        // // i save the string inside localStorage
-        // localStorage.setItem('myActivities', defaultActivitiesString);
-        // console.log('La stringa salavata: ', localStorage.getItem('myActivities'));
-        // // console.log('No activities starting.')
         this.updateLocalStorageActivities()
       }
     },
@@ -132,6 +126,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
           this.activities.unshift(obj);
         }
 
+        this.updateLocalStorageActivities()
+
         this.insertedActivity = "";
         // this.insertedAuthor = "";
         // this.isModifying.bool = false;
@@ -139,7 +135,9 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.reloadInputBar++;
       },
       modifyActivity(obj, i){
+        // if the objects passed from the emit are not void
         if(obj !== null && i !== ""){
+          console.log("I'm modifying from the to-do-app")
           this.insertedActivity = obj.activity;
           this.insertedAuthor = obj.author;
           this.isModifying.bool = true;

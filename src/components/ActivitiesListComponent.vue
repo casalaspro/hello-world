@@ -10,7 +10,6 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          @click="modifyActivity(item, i)"
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
         >
@@ -39,7 +38,12 @@
           >
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
-                <v-icon v-text="icons.modify" class="mr-2" v-bind="attrs" v-on="on"></v-icon>
+                <v-icon
+                v-text="icons.modify"
+                class="mr-2" v-bind="attrs"
+                v-on="on"
+                @click="modifyActivity(item, i)"
+                ></v-icon>
               </template>
               <span>Modify</span>
             </v-tooltip>
@@ -98,6 +102,7 @@ export default{
     },
     modifyActivity(item, index){
       this.$emit('modify', item, index);
+      console.log("I'm modifying from the list")
     }
   },
   created(){
