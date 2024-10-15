@@ -13,6 +13,7 @@
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
         >
+        <!-- inside the v-list item -->
           <v-tooltip right>
             <template v-slot:activator="{ on, attrs }">
               <span><v-checkbox
@@ -30,7 +31,6 @@
             <v-list-item-title
               :class="item.done ? 'linethrough':''"
               v-text="item.activity"
-              append-icon="mdi-trash-can"
             ></v-list-item-title>
           </v-list-item-content>
           <v-list-item-icon
@@ -46,6 +46,18 @@
                 ></v-icon>
               </template>
               <span>Modify</span>
+            </v-tooltip>
+
+            <v-tooltip bottom v-if="item.done">
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon
+                v-text="'mdi-folder-download-outline'"
+                class="mr-2" v-bind="attrs"
+                v-on="on"
+                @click="toggleArchive(i)"
+                ></v-icon>
+              </template>
+              <span>Put in Archive</span>
             </v-tooltip>
 
             <v-tooltip bottom>
@@ -78,6 +90,8 @@ export default{
       icons:{
         trash: "mdi-trash-can",
         modify: "mdi-lead-pencil",
+        archive_in: "mdi-folder-arrow-down-outline",
+        archive_out: "mdi-folder-arrow-up-outline"
       },
       hoveredItemIndex: null,
       // activitiesList: activities,
@@ -97,6 +111,12 @@ export default{
   methods:{
     toggleDone(key){
       this.$emit('toggle', key)
+    },
+    toggleArchive(index){
+      this.activities[index].archived = !this.activities[index].archived;
+      this.updateLocalStorageActivities()
+      console.log("Ho cambiato la selezione di " + this.activities[index].activity + "! Ora è " + this.activities[index].archived);
+      this.reloadList = this.reloadInputBar + 100
     },
     checkboxUpdate(value){
       console.log(value)
