@@ -77,14 +77,41 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
 
     },
     methods:{
+      updateLocalStorageActivities(){
+        // i convert json in string
+        const updatedActivitiesString = JSON.stringify(this.activities);
+        // i save the string inside localStorage
+        localStorage.setItem('myActivities', updatedActivitiesString);
+        // i check
+        let lastActivitiesListString = localStorage.getItem('myActivities');
+        console.log("Activities Updated: ", lastActivitiesListString)
+      },
+      copySavedActivities(){
+      if(localStorage.getItem('myActivities') !== null){
+        let lastActivitiesListString = localStorage.getItem('myActivities');
+        let lastActivitiesListObject = JSON.parse(lastActivitiesListString);
+        this.activities = lastActivitiesListObject;
+        console.log("TO-DO-LIST starting activities: ", this.activities);
+      }else{
+        // // i convert json in string
+        // const defaultActivitiesString = JSON.stringify(this.activities);
+        // // i save the string inside localStorage
+        // localStorage.setItem('myActivities', defaultActivitiesString);
+        // console.log('La stringa salavata: ', localStorage.getItem('myActivities'));
+        // // console.log('No activities starting.')
+        this.updateLocalStorageActivities()
+      }
+    },
       toggleDone(i){
         !this.activities[i].done; 
         console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done);
         this.reloadList = this.reloadInputBar + 100
+        this.updateLocalStorageActivities()
         // this.reloadInputBar++;
       },
       updateActivity(newValue){
         this.insertedActivity = newValue
+        this.updateLocalStorageActivities()
         console.log("Aggiornamento valore: ", newValue)
       },
       showActivities(){
@@ -108,7 +135,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.insertedActivity = "";
         // this.insertedAuthor = "";
         // this.isModifying.bool = false;
-
+        this.reloadList = this.reloadInputBar + 100
         this.reloadInputBar++;
       },
       modifyActivity(obj, i){
@@ -123,6 +150,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       }
     },
     mounted(){
+      this.copySavedActivities()
       this.showActivities()
     }
   }

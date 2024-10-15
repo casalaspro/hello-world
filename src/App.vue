@@ -59,6 +59,10 @@ export default {
         label: "TO-DO-LIST",
         url: "/todolist"
       },
+      {
+        label: "COMPLETED",
+        url: "/completed"
+      },
     ]
   }),
 };

@@ -33,6 +33,12 @@ const routes = [
     name: 'todolist',
     component: () => import('../views/ToDoListView.vue')
   },
+  {
+    path: '/completed',
+    name: 'completed',
+    component: () => import('../views/CompletedView.vue'),
+    // props: { activities: activities }
+  },
 
 ]
 

@@ -2,51 +2,61 @@
   {
     "activity": "Buy groceries",
     "author": "Alice",
-    "done": true
+    "done": true,
+    "archived": false
   },
   {
     "activity": "Complete Vue.js project",
     "author": "Bob",
-    "done": false
+    "done": false,
+    "archived": false
   },
   {
     "activity": "Read a new book",
     "author": "Charlie",
-    "done": false
+    "done": false,
+    "archived": false
   },
   {
     "activity": "Walk the dog",
     "author": "Diana",
-    "done": false
+    "done": false,
+    "archived": false
   },
   {
     "activity": "Prepare presentation slides",
     "author": "Edward" ,
-    "done": false
+    "done": true,
+    "archived": true
   },
   {
     "activity": "Plan weekend trip",
     "author": "Fiona",
-    "done": false
+    "done": false,
+    "archived": false
   },
   {
     "activity": "Clean the garage",
     "author": "George",
-    "done": true
+    "done": true,
+    "archived": true
   },
   {
     "activity": "Write a blog post",
     "author": "Hannah",
-    "done": false
+    "done": false,
+    "archived": false
   },
   {
     "activity": "Pay electricity bill",
     "author": "Ivan",
-    "done": true
+    "done": true,
+    "archived": true
   },
   {
     "activity": "Organize desk",
     "author": "Julia",
-    "done": true
+    "done": true,
+    "archived": false
   }
 ]
