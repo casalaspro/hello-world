@@ -28,11 +28,21 @@
           </v-tooltip>
           
           <v-list-item-content>
+           <div  class="content-wrapper d-flex">
+
             <v-list-item-title
+              class="mr-5"
               :class="item.done ? 'linethrough':''"
-              v-text="item.activity"
-            ></v-list-item-title>
+              v-text="item.activity">
+            </v-list-item-title>
+            <v-chip
+              color="primary"
+              pill
+              small
+            >{{ item.author }}</v-chip>
+           </div>
           </v-list-item-content>
+          
           <v-list-item-icon
             v-if="hoveredItemIndex === i"
           >
@@ -144,5 +154,9 @@ export default{
 <style lang="css">
 .linethrough{
   text-decoration: line-through;
+}
+
+.d-flex{
+  display: flex !important;
 }
 </style>
