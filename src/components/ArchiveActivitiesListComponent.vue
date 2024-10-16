@@ -1,5 +1,15 @@
 <template>
   <v-container>
+<h1>{{ searchString }}</h1>
+    <v-text-field
+    class="mb-5"
+      prepend-icon="mdi-magnify"
+      label="Search by Activity or Author"
+      hide-details="auto"
+      v-model="searchString"
+      messages="This search bar is case sensitive"
+    ></v-text-field>
+    
     <v-card
     elevation="2"
     outlined
@@ -12,7 +22,7 @@
       :items="authorsList"
       label="Filter by Author"
       v-model="selectedAuthor"
-      @change="filterItems"
+      @change="filterItemsBySelect"
       @click:append="resetFilter"
       ></v-select>
     </v-container>
@@ -77,6 +87,7 @@ export default{
   name: "ArchiveActivitiesList",
   data(){
     return{
+      searchString: "",
       closeIcon: false,
       selectedAuthor: "",
       authorsList: [],
@@ -93,16 +104,25 @@ export default{
   watch: {
     // Watch the items prop for changes
     items: {
-      handler(newVal) {
+      handler(newVal){
         // Check if the new value is a valid array
         if (Array.isArray(newVal) && newVal.length > 0) {
           this.filteredItems = this.items
           this.uniqueAuthors();
-          this.filterItems()
+          this.filterItemsBySelect()
         }
       },
       immediate: true, // This ensures the watcher runs immediately upon component creation
       deep: true // Deep watch for nested changes (useful if items are objects that may change internally)
+    },
+    searchString: {
+      handler(newVal){
+        if (newVal !== ""){
+          this.filterItemsBySearch();
+        }else{
+          this.resetFilter();
+        }
+      }
     }
   },
   props:{
@@ -122,9 +142,14 @@ export default{
     resetFilter(){
       this.selectedAuthor = "";
       this.closeIcon = false;
-      this.filterItems();
+      this.filteredItems = this.items
     },
-    filterItems(){
+    filterItemsBySearch(){
+      if(this.searchString !== ""){
+        this.filteredItems = this.items.filter((item)=> item.author.includes(this.searchString) || item.activity.includes(this.searchString));
+      }
+    },
+    filterItemsBySelect(){
       if(this.selectedAuthor !== ""){
         this.filteredItems = this.items.filter((item)=> item.author === this.selectedAuthor);
         this.closeIcon = true
