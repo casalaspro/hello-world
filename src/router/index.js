@@ -29,14 +29,21 @@ const routes = [
     component: () => import('../views/DashboardView.vue')
   },
   {
-    path: '/todolist',
+    path: '/todolist/:name',
     name: 'todolist',
-    component: () => import('../views/ToDoListView.vue')
+    component: () => import('../views/ToDoListView.vue'),
+    props: route => ({ userName: route.params.name })
   },
   {
     path: '/completed',
     name: 'completed',
     component: () => import('../views/CompletedView.vue'),
+    // props: { activities: activities }
+  },
+  {
+    path: '/error',
+    name: 'errorView',
+    component: () => import('../views/ErrorView.vue'),
     // props: { activities: activities }
   },
 

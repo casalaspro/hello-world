@@ -13,6 +13,8 @@
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
         >
+
+        
         <!-- inside the v-list item -->
           <v-tooltip right>
             <template v-slot:activator="{ on, attrs }">
@@ -29,6 +31,7 @@
           
           <v-list-item-content>
            <div  class="content-wrapper d-flex">
+            
 
             <v-list-item-title
               class="mr-5"
@@ -40,6 +43,8 @@
               pill
               small
             >{{ item.author }}</v-chip>
+
+            
            </div>
           </v-list-item-content>
           
@@ -84,6 +89,12 @@
             </v-tooltip>
             
           </v-list-item-icon>
+          <v-badge
+          v-if="item.author === name"
+          color="teal accent-4"
+          bottom
+          dot
+          ></v-badge>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -115,6 +126,10 @@ export default{
   props:{
     items:{
       type: Array,
+      required: true
+    },
+    name:{
+      type: String,
       required: true
     }
   },
@@ -158,5 +173,9 @@ export default{
 
 .d-flex{
   display: flex !important;
+}
+
+v-badge{
+  z-index: 1000;
 }
 </style>

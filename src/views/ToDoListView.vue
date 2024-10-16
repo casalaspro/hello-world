@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <h1 class="text--disabled" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
+    <router-link v-if="userName == undefined" to="/login" class="text--disabled" >Please, log in before to see the TO-DO-LIST</router-link>
+    <!-- <v-divider></v-divider> -->
     <!-- <v-form>
       <v-text-field
       label="Activity"
@@ -19,6 +22,8 @@
     @add="addActivity"
     />
 
+    
+
     <v-container>
       <v-alert
         v-for="(alert, i) in alerts"
@@ -36,6 +41,7 @@
     <ActivitiesList
       :key="reloadList"
       v-bind:items="activities"
+      v-bind:name="userName"
       @modify="modifyActivity"
       @toggle="toggleDone"
       @delete="deleteActivity"
@@ -51,6 +57,18 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
 
   export default {
     name: "ToDoListView",
+    // This is the navigation guard
+    beforeRouteEnter(to, from, next) {
+      console.log("partito")
+    // it checks if there is the parameter in the link that brought you here
+    if (to.params.name == "") {
+      // if the parameter name isn't here it sends you in an error page
+      next({ name: 'errorView' });
+    } else {
+      // Altrimenti, continua con il rendering del componente
+      next();
+    }
+  },
     data(){
       return{
         // i load the default activities from json file
@@ -75,6 +93,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
       InputBar,
       ActivitiesList,
     },
+    props:['userName'],
     watch:{
 
     },
@@ -98,6 +117,9 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.updateLocalStorageActivities()
       }
     },
+      activateLink(){
+
+      },
       toggleDone(i){
         !this.activities[i].done; 
         console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done);
@@ -114,9 +136,10 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         console.log(this.activities)
       },
       addActivity(value){
-        let obj = {
+        if(this.userName !== ""){
+          let obj = {
           activity: value,
-          author: this.insertedAuthor,
+          author: this.userName,
           done: false
         };
 
@@ -135,6 +158,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         // this.isModifying.bool = false;
         this.reloadList = this.reloadInputBar + 100
         this.reloadInputBar++;
+        }
+        
       },
       modifyActivity(obj, i){
         // if the objects passed from the emit are not void
@@ -158,6 +183,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
     mounted(){
       this.copySavedActivities()
       this.showActivities()
+      // console.log(userName)
     }
   }
 

@@ -1,10 +1,18 @@
 <template>
   <v-container>
-    <ArchiveActivitiesList
+   
+    <router-link class="myBtn d-flex justify-center mt-5" v-if="userName == undefined" to="/login">
+      <v-btn color="white">Please, go to login before to see the Archive <span style='font-size:50px;'>&#129430;</span></v-btn>
+    </router-link>
+    <div v-if="userName !== undefined" class="wrapper">
+      <h1>Ciao {{ userName }}</h1>
+      <ArchiveActivitiesList
       :key="reloadList"
       v-bind:items="activities"
       @archive="toggleArchive"
     />
+    </div>
+   
   </v-container>
 </template>
 
@@ -19,6 +27,7 @@ export default{
       reloadInputBar: 0,
     }
   },
+  props:['userName'],
   methods:{
     copySavedActivities(){
       if(localStorage.getItem('myActivities') !== null){
@@ -55,3 +64,9 @@ export default{
 }
 
 </script>
+
+<style lang="css">
+.myBtn{
+  text-decoration: none;
+}
+</style>
