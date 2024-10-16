@@ -5,6 +5,7 @@
     :key="reloadList"
     v-bind:items="activities"
     @archive="toggleArchive"
+    v-bind:name="userName"
     />
   </v-container>
 </template>

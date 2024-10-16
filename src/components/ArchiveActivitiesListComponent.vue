@@ -46,6 +46,12 @@
             </v-tooltip>
 
           </v-list-item-icon>
+          <v-badge
+          v-if="item.author === name"
+          color="teal accent-4"
+          bottom
+          dot
+          ></v-badge>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -72,6 +78,10 @@ export default{
   props:{
     items:{
       type: Array,
+      required: true
+    },
+    name:{
+      type: String,
       required: true
     }
   },
