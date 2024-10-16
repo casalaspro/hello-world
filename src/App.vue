@@ -47,8 +47,7 @@ export default {
     return {
       userName: "", // Valore iniziale vuoto
       links: [
-        { label: "Home", url: "/" },
-        { label: "Login", url: "/login" },
+        { label: "Login", url: "/" },
         { label: "Dashboard", url: "/dashboard" }
       ]
     };
