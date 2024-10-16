@@ -45,6 +45,7 @@
       @modify="modifyActivity"
       @toggle="toggleDone"
       @delete="deleteActivity"
+      @archive="toggleArchive"
     />
   </v-container>
 </template>
@@ -117,9 +118,6 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.updateLocalStorageActivities()
       }
     },
-      activateLink(){
-
-      },
       toggleDone(i){
         !this.activities[i].done; 
         console.log("Ho cambiato la selezione di " + this.activities[i].activity + "! Ora è " + this.activities[i].done);
@@ -127,6 +125,12 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.updateLocalStorageActivities()
         // this.reloadInputBar++;
       },
+      toggleArchive(index){
+      this.activities[index].archived = !this.activities[index].archived;
+      this.updateLocalStorageActivities()
+      console.log("Ho cambiato la selezione di " + this.activities[index].activity + "! Ora è " + this.activities[index].archived);
+      this.reloadList = this.reloadInputBar + 100
+    },
       updateActivity(newValue){
         this.insertedActivity = newValue
         this.updateLocalStorageActivities()
@@ -140,7 +144,8 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
           let obj = {
           activity: value,
           author: this.userName,
-          done: false
+          done: false,
+          archived: false
         };
 
         if(this.isModifying.bool){

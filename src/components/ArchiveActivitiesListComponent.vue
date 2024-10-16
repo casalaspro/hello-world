@@ -18,9 +18,17 @@
         
           
           <v-list-item-content>
-            <v-list-item-title
-              v-text="item.activity"
-            ></v-list-item-title>
+            <div  class="content-wrapper d-flex">
+              <v-list-item-title
+                class="mr-5"
+                v-text="item.activity">
+              </v-list-item-title>
+              <v-chip
+                color="primary"
+                pill
+                small
+              >{{ item.author }}</v-chip>
+            </div>
           </v-list-item-content>
           <v-list-item-icon
             v-if="hoveredItemIndex === i"

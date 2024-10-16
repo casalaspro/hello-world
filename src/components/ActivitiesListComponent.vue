@@ -9,6 +9,7 @@
         <!-- slint-disable-next-line -->
         <v-list-item
           v-for="(item, i) in items"
+          v-show="item.archived === false"
           :key="i"
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
@@ -30,22 +31,18 @@
           </v-tooltip>
           
           <v-list-item-content>
-           <div  class="content-wrapper d-flex">
-            
-
-            <v-list-item-title
-              class="mr-5"
-              :class="item.done ? 'linethrough':''"
-              v-text="item.activity">
-            </v-list-item-title>
-            <v-chip
-              color="primary"
-              pill
-              small
-            >{{ item.author }}</v-chip>
-
-            
-           </div>
+            <div  class="content-wrapper d-flex">
+              <v-list-item-title
+                class="mr-5"
+                :class="item.done ? 'linethrough':''"
+                v-text="item.activity">
+              </v-list-item-title>
+              <v-chip
+                color="primary"
+                pill
+                small
+              >{{ item.author }}</v-chip>
+            </div>
           </v-list-item-content>
           
           <v-list-item-icon
@@ -66,6 +63,7 @@
             <v-tooltip bottom v-if="item.done">
               <template v-slot:activator="{ on, attrs }">
                 <v-icon
+                :key="i"
                 v-text="'mdi-folder-download-outline'"
                 class="mr-2" v-bind="attrs"
                 v-on="on"
@@ -138,10 +136,7 @@ export default{
       this.$emit('toggle', key)
     },
     toggleArchive(index){
-      this.activities[index].archived = !this.activities[index].archived;
-      this.updateLocalStorageActivities()
-      console.log("Ho cambiato la selezione di " + this.activities[index].activity + "! Ora è " + this.activities[index].archived);
-      this.reloadList = this.reloadInputBar + 100
+      this.$emit('archive', index)
     },
     checkboxUpdate(value){
       console.log(value)
