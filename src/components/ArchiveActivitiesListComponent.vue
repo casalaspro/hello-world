@@ -5,10 +5,15 @@
     outlined
     class="rounded-xl"
   >
+    <!-- <h3>{{ selectedAuthor }}</h3> -->
     <v-container>
       <v-select
+      :append-icon="closeIcon ? 'mdi-close' : ''"
       :items="authorsList"
       label="Filter by Author"
+      v-model="selectedAuthor"
+      @change="filterItems"
+      @click:append="resetFilter"
       ></v-select>
     </v-container>
     <v-list>
@@ -16,9 +21,10 @@
       <v-list-item-group v-if="Array.isArray(items) && items.length">
         <!-- slint-disable-next-line -->
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in filteredItems"
           v-show="item.archived"
           :key="i"
+          v-model="selectedAuthor"
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
         >
@@ -71,6 +77,7 @@ export default{
   name: "ArchiveActivitiesList",
   data(){
     return{
+      closeIcon: false,
       selectedAuthor: "",
       authorsList: [],
       filteredItems: [],
@@ -89,7 +96,9 @@ export default{
       handler(newVal) {
         // Check if the new value is a valid array
         if (Array.isArray(newVal) && newVal.length > 0) {
+          this.filteredItems = this.items
           this.uniqueAuthors();
+          this.filterItems()
         }
       },
       immediate: true, // This ensures the watcher runs immediately upon component creation
@@ -110,6 +119,20 @@ export default{
     toggleArchive(key){
       this.$emit('archive', key)
     },
+    resetFilter(){
+      this.selectedAuthor = "";
+      this.closeIcon = false;
+      this.filterItems();
+    },
+    filterItems(){
+      if(this.selectedAuthor !== ""){
+        this.filteredItems = this.items.filter((item)=> item.author === this.selectedAuthor);
+        this.closeIcon = true
+      }else{
+        this.filteredItems = this.items
+      }
+      console.log("Call Function:", this.filteredItems)
+    },
     uniqueAuthors(){
       if(this.items){
         const authorsSet = new Set(this.items.map(item=>item.author));
@@ -121,6 +144,7 @@ export default{
   created(){
     if(Array.isArray(this.items)){
       this.uniqueAuthors();
+      // this.filteredItems = this.items
     }
   }
 }
