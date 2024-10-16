@@ -1,19 +1,20 @@
 <template>
   <v-container>
-    <h1>Ciao {{ userName }}</h1>
+    <h1 class="text--disabled" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
     <ArchiveActivitiesList
     :key="reloadList"
     v-bind:items="activities"
-    @archive="toggleArchive"
     v-bind:name="userName"
+    @archive="toggleArchive"
     />
   </v-container>
 </template>
 
 <script>
 import ArchiveActivitiesList from '../components/ArchiveActivitiesListComponent.vue';
+
 export default{
-  name: "DefaultComponent",
+  name: "CompletedView",
   data(){
     return{
       activities: [],
@@ -30,7 +31,7 @@ export default{
         this.activities = lastActivitiesListObject;
         console.log("TO-DO-LIST starting activities: ", this.activities);
       }else{
-        this.updateLocalStorageActivities()
+        this.activities = ArchiveActivitiesList
       }
     },
     updateLocalStorageActivities(){

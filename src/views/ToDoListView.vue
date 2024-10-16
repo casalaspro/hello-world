@@ -60,7 +60,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
     name: "ToDoListView",
     // This is the navigation guard
     beforeRouteEnter(to, from, next) {
-      console.log("partito")
+      // console.log("partito")
     // it checks if there is the parameter in the link that brought you here
     if (to.params.name == "") {
       // if the parameter name isn't here it sends you in an error page
@@ -113,7 +113,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         let lastActivitiesListString = localStorage.getItem('myActivities');
         let lastActivitiesListObject = JSON.parse(lastActivitiesListString);
         this.activities = lastActivitiesListObject;
-        console.log("TO-DO-LIST starting activities: ", this.activities);
+        // console.log("TO-DO-LIST starting activities: ", this.activities);
       }else{
         this.updateLocalStorageActivities()
       }
@@ -187,7 +187,7 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
     },
     mounted(){
       this.copySavedActivities()
-      this.showActivities()
+      // this.showActivities()
       // console.log(userName)
     }
   }

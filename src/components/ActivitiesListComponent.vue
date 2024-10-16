@@ -141,11 +141,11 @@ export default{
     checkboxUpdate(value){
       console.log(value)
     },
-    showActivities(){
-      if(Array.isArray(this.items) && this.items.length){
-        console.log(this.items)
-      }
-    },
+    // showActivities(){
+    //   if(Array.isArray(this.items) && this.items.length){
+    //     console.log(this.items)
+    //   }
+    // },
     modifyActivity(item, index){
       this.$emit('modify', item, index);
       console.log("I'm modifying from the list")
@@ -155,7 +155,7 @@ export default{
     }
   },
   created(){
-    this.showActivities()
+    // this.showActivities()
   }
 }
 

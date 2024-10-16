@@ -83,7 +83,18 @@ export default{
       hoveredItemIndex: null,
     }
   },
-  watch:{
+  watch: {
+    // Watch the items prop for changes
+    items: {
+      handler(newVal) {
+        // Check if the new value is a valid array
+        if (Array.isArray(newVal) && newVal.length > 0) {
+          this.uniqueAuthors();
+        }
+      },
+      immediate: true, // This ensures the watcher runs immediately upon component creation
+      deep: true // Deep watch for nested changes (useful if items are objects that may change internally)
+    }
   },
   props:{
     items:{
@@ -103,12 +114,14 @@ export default{
       if(this.items){
         const authorsSet = new Set(this.items.map(item=>item.author));
         this.authorsList = Array.from(authorsSet)
-        console.log("prova", this.authorsList)
+        console.log("prova", this.items)
       }
     }
   },
-  mounted(){
-    this.uniqueAuthors();
+  created(){
+    if(Array.isArray(this.items)){
+      this.uniqueAuthors();
+    }
   }
 }
 
