@@ -7,9 +7,12 @@
         <v-form class="">
           <v-text-field 
             messages="Enter at least one character"
+            :error="errorMessage"
+            :error-messages="errorMessage"
             label="Username" 
             prepend-icon="mdi-account-circle"
             v-model="insertedName"
+            v-on:keyup.enter="sendNameToApp"
           />
         </v-form>
       </v-card-text>
@@ -32,13 +35,19 @@
     name: 'LoginView',
     data(){
       return{
-        insertedName: ""
+        insertedName: "",
+        errorMessage: undefined
       }
     },
     methods:{
       sendNameToApp(){
-        console.log('cliccato')
-        this.$emit('user', this.insertedName)
+        if(this.insertedName !== ""){
+          this.$emit('user', this.insertedName)
+          this.$router.push({ name: 'todolist', params: { name: this.insertedName } });
+        }else{
+          this.errorMessage = "Username can't be empty"
+        }
+        
       }
     },
     components: {
