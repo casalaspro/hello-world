@@ -6,6 +6,7 @@
       <v-card-text>
         <v-form class="">
           <v-text-field 
+            messages="Enter at least one character"
             label="Username" 
             prepend-icon="mdi-account-circle"
             v-model="insertedName"

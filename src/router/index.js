@@ -35,16 +35,15 @@ const routes = [
     props: route => ({ userName: route.params.name })
   },
   {
-    path: '/completed',
+    path: '/completed/:name',
     name: 'completed',
     component: () => import('../views/CompletedView.vue'),
-    // props: { activities: activities }
+    props: route => ({ userName: route.params.name })
   },
   {
     path: '/error',
     name: 'errorView',
     component: () => import('../views/ErrorView.vue'),
-    // props: { activities: activities }
   },
 
 ]

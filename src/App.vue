@@ -49,8 +49,7 @@ export default {
       links: [
         { label: "Home", url: "/" },
         { label: "Login", url: "/login" },
-        { label: "Dashboard", url: "/dashboard" },
-        { label: "COMPLETED", url: "/completed" }
+        { label: "Dashboard", url: "/dashboard" }
       ]
     };
   },
@@ -63,6 +62,10 @@ export default {
         {
           label: "TO-DO-LIST",
           url: this.userName !== "" ? `/todolist/${this.userName}` : "/error"
+        },
+        {
+          label: "COMPLETED",
+          url: this.userName !== "" ? `/completed/${this.userName}` : "/error"
         }
       ];
     }

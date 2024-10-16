@@ -1,18 +1,11 @@
 <template>
   <v-container>
-   
-    <router-link class="myBtn d-flex justify-center mt-5" v-if="userName == undefined" to="/login">
-      <v-btn color="white">Please, go to login before to see the Archive <span style='font-size:50px;'>&#129430;</span></v-btn>
-    </router-link>
-    <div v-if="userName !== undefined" class="wrapper">
-      <h1>Ciao {{ userName }}</h1>
-      <ArchiveActivitiesList
-      :key="reloadList"
-      v-bind:items="activities"
-      @archive="toggleArchive"
+    <h1>Ciao {{ userName }}</h1>
+    <ArchiveActivitiesList
+    :key="reloadList"
+    v-bind:items="activities"
+    @archive="toggleArchive"
     />
-    </div>
-   
   </v-container>
 </template>
 
