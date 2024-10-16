@@ -4,7 +4,7 @@
     outlined
     class="rounded-xl"
   >
-    <v-list>
+       <v-list>
       <v-list-item-group v-if="Array.isArray(items) && items.length">
         <!-- slint-disable-next-line -->
         <v-list-item

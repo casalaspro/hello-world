@@ -5,7 +5,14 @@
     outlined
     class="rounded-xl"
   >
+    <v-container>
+      <v-select
+      :items="authorsList"
+      label="Filter by Author"
+      ></v-select>
+    </v-container>
     <v-list>
+      
       <v-list-item-group v-if="Array.isArray(items) && items.length">
         <!-- slint-disable-next-line -->
         <v-list-item
@@ -64,6 +71,9 @@ export default{
   name: "ArchiveActivitiesList",
   data(){
     return{
+      selectedAuthor: "",
+      authorsList: [],
+      filteredItems: [],
       selectedItem: true,
       doneActivities:[],
       icons:{
@@ -89,9 +99,16 @@ export default{
     toggleArchive(key){
       this.$emit('archive', key)
     },
+    uniqueAuthors(){
+      if(this.items){
+        const authorsSet = new Set(this.items.map(item=>item.author));
+        this.authorsList = Array.from(authorsSet)
+        console.log("prova", this.authorsList)
+      }
+    }
   },
-  created(){
-    // this.showActivities()
+  mounted(){
+    this.uniqueAuthors();
   }
 }
 
