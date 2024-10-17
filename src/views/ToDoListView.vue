@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text--disabled" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
+    <h1 class="welcomeText" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
     <router-link v-if="userName == undefined" to="/login" class="text--disabled" >Please, log in before to see the TO-DO-LIST</router-link>
     <!-- <v-divider></v-divider> -->
     <!-- <v-form>
@@ -193,3 +193,9 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
   }
 
 </script>
+
+<style lang="css">
+.welcomeText{
+  color: white;
+}
+</style>

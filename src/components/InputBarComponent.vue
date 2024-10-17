@@ -4,6 +4,7 @@
     <v-text-field
     label="Activity"
     type="text"
+    dark
     v-model="localInsertedActivity"
     :prepend-icon="icons.activity"
     :append-icon="icons.addActivity"

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text--disabled" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
+    <h1 class="welcomeText" v-if="userName !== undefined">Welcome {{ userName }}!</h1>
     <ArchiveActivitiesList
     :key="reloadList"
     v-bind:items="activities"
@@ -61,7 +61,5 @@ export default{
 </script>
 
 <style lang="css">
-.myBtn{
-  text-decoration: none;
-}
+
 </style>

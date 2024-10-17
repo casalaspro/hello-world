@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-text-field
+    dark
     class="mb-5"
       prepend-icon="mdi-magnify"
       label="Search by Activity or Author"

@@ -1,13 +1,12 @@
-<template>
-  <v-app>
-    <v-app-bar class="" app color="primary" dark>
-      <div class="mySvg my-3">
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="150pt"  viewBox="0 0 3025.000000 1500.000000"
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="3025.000000pt" height="1500.000000pt" viewBox="0 0 3025.000000 1500.000000"
  preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,1500.000000) scale(0.100000,-0.100000)"
-fill="#ffffff" stroke="none">
+fill="#000000" stroke="none">
 <path d="M7760 10551 c-52 -21 -218 -85 -367 -142 l-272 -103 27 -29 c30 -32
 388 -337 574 -489 110 -91 119 -96 155 -92 21 3 156 15 301 28 145 13 265 25
 267 28 5 4 -522 787 -552 820 -21 23 -20 23 -133 -21z"/>
@@ -154,120 +153,4 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
 150 188 2 187 3 0 35 0 35 -187 3 -188 2 0 140 0 140 215 0 215 0 0 40 0 40
 -260 0 -260 0 0 -410z"/>
 </g>
-      </svg>
-      </div>
-      <v-spacer></v-spacer>
-      <v-btn
-        v-for="link in computedLinks"
-        :key="`${link.label}-header-link`"
-        color="BLACK"
-        text
-        rounded
-        class="my-2"
-        :to="link.url">
-        {{ link.label }}
-      </v-btn>
-    </v-app-bar>
-
-    <v-main class="myMainWrap" height="100%">
-      <router-view :v-bind="userName" @user="setName"></router-view>
-    </v-main>
-
-    <v-footer color="primary" padless>
-      <v-layout justify-center wrap>
-        <v-btn
-          v-for="link in computedLinks"
-          :key="`${link.label}-footer-link`"
-          color="white"
-          text
-          rounded
-          class="my-2"
-          :to="link.url">
-          {{ link.label }}
-        </v-btn>
-        <v-flex primary lighten-2 py-4 text-center white--text xs12>
-          proudly made by <strong>Alessandro Casalaspro</strong> / <strong>{{ new Date().getFullYear() }} </strong>
-          <v-btn
-              class="ml-3 my-3"
-              x-small
-              color="secondary"
-              dark
-              href="https://github.com/casalaspro"
-              target="_blank"
-            >
-            <v-icon large color="white">mdi-github</v-icon>
-            Visit My Github
-            </v-btn>
-            <v-btn
-              class="ml-3"
-              x-small
-              color="secondary"
-              dark
-              href="https://www.linkedin.com/in/alessandro-casalaspro/"
-              target="_blank"
-            >
-            <v-icon large color="white">mdi-linkedin</v-icon>
-            Visit My Linkedin
-            </v-btn>
-        </v-flex>
-      </v-layout>
-    </v-footer>
-  </v-app>
-</template>
-
-<script>
-export default {
-  name: 'App',
-
-  data() {
-    return {
-      userName: "", // Valore iniziale vuoto
-      links: [
-        { label: "Login", url: "/" },
-      ]
-    };
-  },
-
-  computed: {
-    // Proprietà calcolata che aggiorna i link dinamici basati su userName
-    computedLinks() {
-      return [
-        ...this.links,
-        {
-          label: "TO-DO-LIST",
-          url: this.userName !== "" ? `/todolist/${this.userName}` : "/error"
-        },
-        {
-          label: "COMPLETED",
-          url: this.userName !== "" ? `/completed/${this.userName}` : "/error"
-        },
-        {
-          label: "COMIC",
-          url: "/comic"
-        }
-      ];
-    }
-  },
-
-  methods: {
-    setName(name) {
-      // Imposta il nome utente e aggiorna i link dinamicamente
-      this.userName = name;
-      console.log("Nome utente impostato:", name);
-    }
-  }
-};
-</script>
-
-<style lang="css">
-.v-main__wrap{
-  background-color: #22283C;
-  
-};
-
-.myBtn{
-  text-decoration: none;
-}
-
-
-</style>
+</svg>
