@@ -34,7 +34,5 @@ Ho trovato questo esercizio molto divertente e stimolante. Sono grato a PiùSvil
 ```
 
 
-Per ulteriori informazioni, visita [PiùSviluppo](https://www.piusviluppo.it/) o [contattami direttamente](mailto:casalaspro.alessandro@gmail.com).
-
-[Link Text](mailto:casalaspro.alessandro@gmail.com?subject=Ciao!%20text)
+Per ulteriori informazioni, scrivi direttamente a [casalaspro.alessandro@gmail.com](mailto:casalaspro.alessandro@gmail.com).
 
