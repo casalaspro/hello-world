@@ -11,7 +11,6 @@
     :key="reloadInputBar"
     :insertedAuthor="insertedAuthor"
     :insertedActivity="insertedActivity"
-    @update-activity="updateActivity"
     @add="addActivity"
     />
 
@@ -123,72 +122,82 @@ import ActivitiesList from "../components/ActivitiesListComponent.vue";
         this.updateLocalStorageActivities()
       },
       toggleArchive(index){
+        // i change with the opposite value for archived
       this.activities[index].archived = !this.activities[index].archived;
+      // i save the new values in the local storage
       this.updateLocalStorageActivities()
-      console.log("Ho cambiato la selezione di " + this.activities[index].activity + "! Ora è " + this.activities[index].archived);
+      // i reload the list changing the key
       this.reloadList = this.reloadInputBar + 100
     },
-      updateActivity(newValue){
-        this.insertedActivity = newValue
-        this.updateLocalStorageActivities()
-        console.log("Aggiornamento valore: ", newValue)
-      },
-      showActivities(){
-        console.log(this.activities)
-      },
+      // this is used to pass the string from input to the value this
+      // updateActivity(newValue){
+      //   this.insertedActivity = newValue
+      // },
+      // showActivities(){
+      //   console.log(this.activities)
+      // },
+      // it takes the $emit signal with the value to add a new activity
       addActivity(value){
+        // it checks if there is a userName
         if(this.userName !== ""){
+          // i create an object with all the informations
           let obj = {
           activity: value,
           author: this.userName,
           done: false,
           archived: false
         };
-
+        // if the modifying bool is true
         if(this.isModifying.bool){
+          // take the key value from the object
           this.activities[this.isModifying.key] = obj;
+          // i reset the boolean
           this.isModifying.bool=false
+          // i reset the key
           this.isModifying.key = "";
         }else{
+          // i put the new object at the array start
           this.activities.unshift(obj);
         }
-
+        // i update the local storage
         this.updateLocalStorageActivities()
-
+        // i reset the input value
         this.insertedActivity = "";
-        // this.insertedAuthor = "";
-        // this.isModifying.bool = false;
+        // i update the components by the key
         this.reloadList = this.reloadInputBar + 100
         this.reloadInputBar++;
         }
-        
       },
+      // i receive the object and the relative key selected to be modified 
       modifyActivity(obj, i){
-        // if the objects passed from the emit are not void
+        // if the object and the key passed from the emit are not void
         if(obj !== null && i !== ""){
           console.log("I'm modifying from the to-do-app")
+          // i set all the values
           this.insertedActivity = obj.activity;
           this.insertedAuthor = obj.author;
           this.isModifying.bool = true;
           this.isModifying.key = i;
         }
-
+        // i reload the component
         this.reloadInputBar++;
       },
+      // i receive the index value from the list
       deleteActivity(index){
+        // if there is the index
         if(index !== ""){
+          // i remove the object from the array
           this.activities.splice(index, 1);
+          // i update the local storage
           this.updateLocalStorageActivities()
         }
       }
     },
     mounted(){
+      // i load the activities at the beginning
       this.copySavedActivities()
-      // this.showActivities()
-      // console.log(userName)
     }
   }
-
 </script>
 
 <style lang="css">
