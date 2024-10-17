@@ -157,6 +157,7 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
       </svg>
       </div>
       <v-spacer></v-spacer>
+      <!-- here there are the links / there is the same cycle inside the footer -->
       <v-btn
         v-for="link in computedLinks"
         :key="`${link.label}-header-link`"
@@ -168,13 +169,14 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
         {{ link.label }}
       </v-btn>
     </v-app-bar>
-
+    <!-- here there is the router-view, where all the views are rendered -->
     <v-main class="myMainWrap" height="100%">
       <router-view :v-bind="userName" @user="setName"></router-view>
     </v-main>
-
+    <!-- here starts the footer -->
     <v-footer color="primary" padless>
       <v-layout justify-center wrap>
+        <!-- here there are the link -->
         <v-btn
           v-for="link in computedLinks"
           :key="`${link.label}-footer-link`"
@@ -185,7 +187,9 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
           :to="link.url">
           {{ link.label }}
         </v-btn>
+
         <v-flex primary lighten-2 py-4 text-center white--text xs12>
+
           proudly made by <strong>Alessandro Casalaspro</strong> / <strong>{{ new Date().getFullYear() }} </strong>
           <v-btn
               class="ml-3 my-3"
@@ -220,8 +224,7 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
             <v-icon large color="white">mdi-linkedin</v-icon>
             Visit My Linkedin
             </v-btn>
-            
-            
+
         </v-flex>
       </v-layout>
     </v-footer>
@@ -234,7 +237,7 @@ export default {
 
   data() {
     return {
-      userName: "", // Valore iniziale vuoto
+      userName: "",
       links: [
         { label: "Login", url: "/" },
       ]
@@ -242,7 +245,7 @@ export default {
   },
 
   computed: {
-    // Proprietà calcolata che aggiorna i link dinamici basati su userName
+    // computed property that updates the links based on userName value
     computedLinks() {
       return [
         ...this.links,
@@ -263,8 +266,8 @@ export default {
   },
 
   methods: {
+    // set the userName and update the links
     setName(name) {
-      // Imposta il nome utente e aggiorna i link dinamicamente
       this.userName = name;
       console.log("Nome utente impostato:", name);
     }
