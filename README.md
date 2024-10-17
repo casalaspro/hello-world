@@ -1,4 +1,4 @@
-# To-Do List Project
+# To-Do List Project :it:
 
 Questo progetto è stato realizzato su commissione dell'azienda [PiùSviluppo di Torino](https://www.piusviluppo.it/). Il lavoro è stato sviluppato seguendo scrupolosamente tutte le indicazioni fornite, a partire dal nome del progetto indicato nel file `esercizio_vue.txt`.
 
@@ -36,3 +36,38 @@ Ho trovato questo esercizio molto divertente e stimolante. Sono grato a PiùSvil
 
 Per ulteriori informazioni, scrivi direttamente a [casalaspro.alessandro@gmail.com](mailto:casalaspro.alessandro@gmail.com).
 
+<hr>
+
+# To-Do List Project :uk:
+
+This project was commissioned by the company [Turin-based PiùSviluppo](https://www.piusviluppo.it/). The work was developed scrupulously following all the directions given, starting with the project name given in the `exercise_vue.txt` file.
+
+## Technologies Used.
+
+- **Vue.js**: The basis of the application.
+- **Vuetify**: I had to delve into this technology, which I was not previously familiar with, to manage the GUI efficiently and in accordance with the project requirements.
+- **AWS API Gateway and Lambda**: Making calls to the [xkcd](https://xkcd.com/json.html) site from the `localhost`, I encountered problems related to CORS security policies. To overcome this difficulty, I implemented a proxy using the AWS API Gateway and Lambda services. 
+  - You can view the proxy service used here: [My AWS API Gateway service](https://0j2q04041h.execute-api.eu-west-3.amazonaws.com/dev/?page=614).
+
+## Personal Experience.
+
+I found this exercise very entertaining and challenging. I am grateful to MoreDevelopment for giving me the opportunity to improve my technical skills and explore new technologies such as Vuetify and AWS services. Thank you for the trust placed in my work and the opportunity for personal and professional growth.
+
+---
+
+## Installation and Setup
+1. Clone this repository:
+```bash
+   git clone https://github.com/casalaspro/hello-world
+   cd hello-world
+```
+2. Install the dependencies:
+```bash
+    npm install
+```
+3. Start the application:
+```bash
+    npm run serve
+```
+
+For more information, write directly to [casalaspro.alessandro@gmail.com](mailto:casalaspro.alessandro@gmail.com).
