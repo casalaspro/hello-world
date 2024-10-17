@@ -70,4 +70,4 @@ I found this exercise very entertaining and challenging. I am grateful to MoreDe
     npm run serve
 ```
 
-For more information, write directly to [casalaspro.alessandro@gmail.com](https://mailto:casalaspro.alessandro@gmail.com?subject=Ciao!).
+For more information, write directly to [casalaspro.alessandro@gmail.com](https://mailto:casalaspro.alessandro@gmail.com).
