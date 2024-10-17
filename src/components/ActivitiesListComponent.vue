@@ -14,7 +14,6 @@
           @mouseenter="hoveredItemIndex = i"
           @mouseleave="hoveredItemIndex = null"
         >
-
         
         <!-- inside the v-list item -->
           <v-tooltip right>
@@ -32,6 +31,7 @@
           
           <v-list-item-content>
             <div  class="content-wrapper d-flex">
+              <!-- the value done modifies the class -->
               <v-list-item-title
                 class="mr-5"
                 :class="item.done ? 'linethrough':''"
@@ -45,6 +45,7 @@
             </div>
           </v-list-item-content>
           
+          <!-- the tooltip hover the bottons -->
           <v-list-item-icon
             v-if="hoveredItemIndex === i"
           >
@@ -85,8 +86,8 @@
               </template>
               <span>Delete</span>
             </v-tooltip>
-            
           </v-list-item-icon>
+          <!-- the badge shows the activities made by the logged user -->
           <v-badge
           v-if="item.author === name"
           color="teal accent-4"
@@ -106,6 +107,7 @@ export default{
     return{
       selectedItem: true,
       doneActivities:[],
+      // here you can change the icons
       icons:{
         trash: "mdi-trash-can",
         modify: "mdi-lead-pencil",
@@ -113,14 +115,9 @@ export default{
         archive_out: "mdi-folder-arrow-up-outline"
       },
       hoveredItemIndex: null,
-      // activitiesList: activities,
     }
   },
-  watch:{
-    doneActivities(){
-      console.log(this.doneActivities)
-    }
-  },
+  // i receive the props from the parent
   props:{
     items:{
       type: Array,
@@ -132,44 +129,34 @@ export default{
     }
   },
   methods:{
+    // i call the method with $emit passing the key value
     toggleDone(key){
       this.$emit('toggle', key)
     },
+    // i call the method with $emit passing the index value
     toggleArchive(index){
       this.$emit('archive', index)
     },
-    checkboxUpdate(value){
-      console.log(value)
-    },
-    // showActivities(){
-    //   if(Array.isArray(this.items) && this.items.length){
-    //     console.log(this.items)
-    //   }
-    // },
+    // i call the method with $emit passing item and index values
     modifyActivity(item, index){
       this.$emit('modify', item, index);
       console.log("I'm modifying from the list")
     },
+    // i call the method with $emit
     deleteActivity(index){
       this.$emit('delete', index);
     }
-  },
-  created(){
-    // this.showActivities()
   }
 }
-
 </script>
 
 <style lang="css">
 .linethrough{
   text-decoration: line-through;
 }
-
 .d-flex{
   display: flex !important;
 }
-
 v-badge{
   z-index: 1000;
 }
