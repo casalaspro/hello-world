@@ -1,6 +1,5 @@
 <template>
   <v-container>
-<h1>{{ searchString }}</h1>
     <v-text-field
     class="mb-5"
       prepend-icon="mdi-magnify"

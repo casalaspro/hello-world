@@ -6,7 +6,7 @@
       <v-btn
         v-for="link in computedLinks"
         :key="`${link.label}-header-link`"
-        color="white"
+        color="BLACK"
         text
         rounded
         class="my-2"
@@ -15,11 +15,11 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="myMainWrap" height="100%">
       <router-view :v-bind="userName" @user="setName"></router-view>
     </v-main>
 
-    <v-footer color="primary lighten-1" padless>
+    <v-footer color="primary" padless>
       <v-layout justify-center wrap>
         <v-btn
           v-for="link in computedLinks"
@@ -32,7 +32,29 @@
           {{ link.label }}
         </v-btn>
         <v-flex primary lighten-2 py-4 text-center white--text xs12>
-          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+          proudly made by <strong>Alessandro Casalaspro</strong> / <strong>{{ new Date().getFullYear() }} </strong>
+          <v-btn
+              class="ml-3"
+              x-small
+              color="secondary"
+              dark
+              href="https://github.com/casalaspro"
+              target="_blank"
+            >
+            <v-icon large color="white">mdi-github</v-icon>
+            Visit My Github
+            </v-btn>
+            <v-btn
+              class="ml-3"
+              x-small
+              color="secondary"
+              dark
+              href="https://www.linkedin.com/in/alessandro-casalaspro/"
+              target="_blank"
+            >
+            <v-icon large color="white">mdi-linkedin</v-icon>
+            Visit My Linkedin
+            </v-btn>
         </v-flex>
       </v-layout>
     </v-footer>
@@ -48,7 +70,6 @@ export default {
       userName: "", // Valore iniziale vuoto
       links: [
         { label: "Login", url: "/" },
-        { label: "Dashboard", url: "/dashboard" }
       ]
     };
   },
@@ -65,6 +86,10 @@ export default {
         {
           label: "COMPLETED",
           url: this.userName !== "" ? `/completed/${this.userName}` : "/error"
+        },
+        {
+          label: "COMIC",
+          url: "/comic"
         }
       ];
     }
@@ -79,3 +104,9 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+.v-main__wrap{
+  background-color: #22283C;
+};
+</style>

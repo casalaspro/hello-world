@@ -21,7 +21,7 @@
         <v-spacer></v-spacer>
         <div @click="sendNameToApp()">
           <router-link :to="{ name: 'todolist', params: { name: insertedName } }">
-            <v-btn color="info">Go to list</v-btn>
+            <v-btn class="primary">Go to list</v-btn>
           </router-link>
         </div>
       </v-card-actions>
@@ -48,7 +48,11 @@
           this.errorMessage = "Username can't be empty"
         }
         
-      }
+      },
+      // goToTodolist() {
+        
+      //   this.$router.push({ name: 'todolist' });
+      // }
     },
     components: {
       

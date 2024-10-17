@@ -18,11 +18,6 @@ const routes = [
     component: () => import('../views/LoginView.vue')
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: () => import('../views/DashboardView.vue')
-  },
-  {
     path: '/todolist/:name',
     name: 'todolist',
     component: () => import('../views/ToDoListView.vue'),
@@ -39,7 +34,11 @@ const routes = [
     name: 'errorView',
     component: () => import('../views/ErrorView.vue'),
   },
-
+  {
+    path: '/comic',
+    name: 'comic',
+    component: () => import('../views/ComicView.vue')
+  }
 ]
 
 const router = new VueRouter({
