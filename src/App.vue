@@ -199,6 +199,17 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
             Visit My Github
             </v-btn>
             <v-btn
+              class="ml-3 my-3"
+              x-small
+              color="secondary"
+              dark
+              href="https://github.com/casalaspro/hello-world"
+              target="_blank"
+            >
+            <v-icon large color="white">mdi-github</v-icon>
+            Your project README
+            </v-btn>
+            <v-btn
               class="ml-3"
               x-small
               color="secondary"
@@ -209,6 +220,8 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
             <v-icon large color="white">mdi-linkedin</v-icon>
             Visit My Linkedin
             </v-btn>
+            
+            
         </v-flex>
       </v-layout>
     </v-footer>
