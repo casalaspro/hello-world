@@ -1,6 +1,6 @@
 # To-Do List Project :it:
 
-Questo progetto è stato realizzato su commissione dell'azienda [PiùSviluppo di Torino](https://www.piusviluppo.it/). Il lavoro è stato sviluppato seguendo scrupolosamente tutte le indicazioni fornite, a partire dal nome del progetto indicato nel file `esercizio_vue.txt`.
+Questo progetto è stato realizzato su commissione dell'azienda [PiùSviluppo di Torino](https://www.piusviluppo.it/). Il lavoro è stato sviluppato seguendo scrupolosamente tutte le indicazioni fornite, a partire dal nome del progetto indicato nel file `esercizio_vue.txt`. L'unica differenza è la scelta di scrivere l'app in inglese.
 
 ## Tecnologie Utilizzate
 
@@ -40,7 +40,7 @@ Per ulteriori informazioni, scrivi direttamente a [casalaspro.alessandro@gmail.c
 
 # To-Do List Project :uk:
 
-This project was commissioned by the company [Turin-based PiùSviluppo](https://www.piusviluppo.it/). The work was developed scrupulously following all the directions given, starting with the project name given in the `exercise_vue.txt` file.
+This project was commissioned by the company [Turin-based PiùSviluppo](https://www.piusviluppo.it/). The work was developed scrupulously following all the directions given, starting with the project name given in the `exercise_vue.txt` file. The only difference is the choice to write the app in English.
 
 ## Technologies Used.
 
