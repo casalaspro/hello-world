@@ -3,15 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+// i prepare the routes
 const routes = [
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
   {
     path: '/',
     name: 'login',
@@ -21,12 +14,14 @@ const routes = [
     path: '/todolist/:name',
     name: 'todolist',
     component: () => import('../views/ToDoListView.vue'),
+    // here i pass a parameter
     props: route => ({ userName: route.params.name })
   },
   {
     path: '/completed/:name',
     name: 'completed',
     component: () => import('../views/CompletedView.vue'),
+    // here i pass a parameter
     props: route => ({ userName: route.params.name })
   },
   {

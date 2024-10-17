@@ -22,17 +22,13 @@ export default{
   name: "InputBar",
   data(){
     return{
-      // mdi icons ready t use
+      // mdi icons ready to use
       icons:{
       activity: "mdi-wrench",
       addActivity: "mdi-pencil-plus"
       },
       localInsertedActivity: "",
-
     }
-  },
-  watch: {
-
   },
   // i import the props
   props:{
@@ -46,20 +42,20 @@ export default{
     }
   },
   methods:{
+    // i call the function in the parent with $emit method
     updateActivity(value){
       this.$emit('update-activity', value);
-      // console.log(value)
     },
-    // method to add a new activity
+    // i call the function in the parent to add a new activity with the $emit method
     addActivity(){
       // i emit to the parent component
       this.$emit('add', this.localInsertedActivity);
+      // i reset the value
       this.localInsertedActivity = "";
     }
   },
   created(){
-    // i check to have datas from the prop before to copy inside the local variable
-    // if(this.insertedActivity !== null)
+    // i pass the prop to the local value
     this.localInsertedActivity = this.insertedActivity
   }
 

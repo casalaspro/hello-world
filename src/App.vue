@@ -189,7 +189,12 @@ m380 304 c109 -63 108 -215 0 -278 -29 -18 -56 -22 -162 -25 l-128 -3 0 167 0
         </v-btn>
 
         <v-flex primary lighten-2 py-4 text-center white--text xs12>
-
+          <v-avatar class="mr-2">
+            <img
+            src="./assets/profile_image.png"
+            alt="John"
+            >
+          </v-avatar>
           proudly made by <strong>Alessandro Casalaspro</strong> / <strong>{{ new Date().getFullYear() }} </strong>
           <v-btn
               class="ml-3 my-3"
